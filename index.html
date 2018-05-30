@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Ponpes AL-Hidayah</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="assets/material/css/materialize.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="assets/DataTables/css/jquery.dataTables.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="assets/font/micon.css">
+  <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/material/js/materialize.min.js"></script>
+  <!-- <script type="text/javascript" src="assets/DataTables/js/jquery.dataTables.min.js"></script> -->
+  <!-- <script type="text/javascript" src="asset/DataTables/js/dataTables.material.min.js"></script> -->
+  <script type="text/javascript"></script>
+<style type="text/css">
+  #slide-out{
+    top: 65px;
+    position: absolute;
+  }
+  .alert{
+    margin: 0;
+    padding:  15px;
+    border-radius: 2px;
+  }
+  .brand-logo{
+      /* background: url(assets/images/apple-touch.png) no-repeat; */
+      background-size: 40px;
+      text-indent: 32px;
+      background-position-y: center;
+      font-size: 25px !important;
+  }
+  .row{ margin-bottom: 0; }
+  .add{ margin: 20px 15px; position: absolute; }
+</style>
+</head>
+<body>
+  <nav class=" green">
+    <div class="">
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo" >Ponpes AL-Hidayah</a>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Akun<i class="material-icons right">settings</i></a>
+          <ul id="dropdown1" class="dropdown-content">
+            <li><a href="<?php echo base_url(); ?>auth/chpwd">Ganti Password</a></li>
+            <li class="divider"></li>
+            <li><a href="<?php echo base_url(); ?>auth/logout">logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </nav>  
+<div class="">
+<div class="row">
+  <div class="col m2 show-on-medium-and-up">
+    <ul id="slide-out" class="side-nav fixed">
+        <!-- <li class=""><h5 style="padding: 0 32px;">Menu</h5></li> -->
+        <li class="">
+            <ul class="collapsible collapsible-accordion">
+              <li>
+                <a class="collapsible-header <?php echo ($this->uri->segment(1)=='dokter'||$this->uri->segment(1)=='poliklinik'||$this->uri->segment(1)=='pasien')?'active':''; ?>" style="padding: 0 32px;">Data Master</a>
+                <div class="collapsible-body">
+                  <ul style="padding: 0 20px;">
+                    <li><a href="<?php echo base_url(); ?>dokter" style="font-weight:400;">Data Dokter</a></li>
+                    <li><a href="<?php echo base_url(); ?>poliklinik" style="font-weight:400;">Data Poliklinik</a></li>
+                    <li><a href="<?php echo base_url(); ?>pasien" style="font-weight:400;">Data Pasien</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><div class="divider"></div></li>
+              <li>
+                <a class="collapsible-header" style="padding: 0 32px;">Proses</a>
+                <div class="collapsible-body">
+                  <ul style="padding: 0 20px;">
+                    <li><a href="<?php echo base_url(); ?>registrasi/pasien" style="font-weight:400;">Registrasi Pasien</a></li>
+                    <li><a href="<?php echo base_url(); ?>rekam_medis" style="font-weight:400;">Rekam Medis</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><div class="divider"></div></li>
+              <li>
+                <a class="collapsible-header" style="padding: 0 32px;">Laporan</a>
+                <div class="collapsible-body">
+                  <ul style="padding: 0 20px;">
+                    <li><a href="<?php echo base_url(); ?>laporan_dokter" style="font-weight:400;">Laporan Dokter</a></li>
+                    <li><a href="<?php echo base_url(); ?>laporan_poli" style="font-weight:400;">Laporan Poliklinik</a></li>
+                    <li><a href="<?php echo base_url(); ?>laporan_pasien" style="font-weight:400;">Laporan Pasien</a></li>
+                    <li><a href="<?php echo base_url(); ?>laporan_kunjungan" style="font-weight:400;">Laporan Rekam Medis</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><div class="divider"></div></li>
+              
+            </ul>
+        </li>
+    </ul>
+  </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){  
+    $(".dropdown-button").dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: true, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false
+    });
+
+    $(".button-collapse").sideNav();
+    $('.carousel').carousel({fullWidth: true});
+    autoplay()   
+    function autoplay() {
+        $('.carousel').carousel('next');
+        setTimeout(autoplay, 5000);
+    }
+    $('select').material_select();
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 50, // Creates a dropdown of 15 years to control year,
+      today: 'Today',
+      clear: 'Clear',
+      close: 'Ok',
+      closeOnSelect: true,
+      format: 'yyyy/mm/dd' // Close upon selecting a date,
+    });
+    $('#example').DataTable( {
+         "bLengthChange": false,
+        columnDefs: [
+            {
+                targets: [ 0, 1, 2 ],
+                className: 'mdl-data-table__cell--non-numeric'
+            }
+        ]
+    } );
+})
+</script>
+</body>
+</html>
